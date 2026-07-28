@@ -15,6 +15,7 @@ import LoginModal from './components/LoginModal.jsx';
 import UploadModal from './components/UploadModal.jsx';
 import MachineModal from './components/MachineModal.jsx';
 import DocumentPreviewModal from './components/DocumentPreviewModal.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 
 // Lazily loaded CMMS modules — keeps the initial bundle lean
 const Breakdowns = lazy(() => import('./pages/Breakdowns.jsx'));
@@ -121,8 +122,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
